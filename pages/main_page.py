@@ -1,11 +1,10 @@
 import allure
-from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from locators.main_page_locators import Locators
 
 class MainPage(BasePage):
-    def __init__(self, driver):
-        self.driver = driver
+    #def __init__(self, driver):
+        #self.driver = driver
         #эт вообще нужно?
 
     @allure.step('Кликаем на кнопку "Войти в аккаунт"')
@@ -28,10 +27,14 @@ class MainPage(BasePage):
         self.click_element(Locators.CLOSE_INGREDIENT_INFO_WINDOW)
     @allure.step('Перетаскиваем выбранный ингредиент в зону формирования бургера')
     def move_chosen_ingredient_to_making_burger_field(self):
-        self.move_element(Locators.BUN_1,Locators.UPPER_BUN_FIELD)
+        self.move_element(Locators.BUN_1, Locators.UPPER_BUN_FIELD)
     @allure.step('Кликаем на кнопку оформления заказа')
     def click_make_order(self):
         self.click_element(Locators.MAKE_ORDER_BUTTON)
+    @allure.step('Оформить заказ')
+    def create_order(self):
+        self.move_chosen_ingredient_to_making_burger_field()
+        self.click_make_order()
     @allure.step('Получаем значение каунтера первого ингредиента булки')
     def get_text_of_bun_1_counter(self):
         self.get_text_of_element(Locators.COUNTER_BUN_1)

@@ -4,7 +4,7 @@ from config import URL
 from pages.base_page import BasePage
 from locators.main_page_locators import Locators
 from locators.account_page_locators import Locators
-from data import Data
+from pages.account_page import AccountPage
 def browser_settings():
     firefox_options = webdriver.FirefoxOptions()
     return firefox_options
@@ -22,8 +22,6 @@ def navigate(driver):
 @pytest.fixture
 def login(driver,navigate):
     BasePage.click_element(Locators.LOG_IN_BUTTON)
-    BasePage.enter_text(Locators.EMAIL_LOG_IN, Data.email)
-    BasePage.enter_text(Locators.PASSWORD_LOG_IN, Data.password)
-    BasePage.click_element(Locators.LOG_IN_BUTTON)
+    AccountPage.log_in()
     yield driver
 

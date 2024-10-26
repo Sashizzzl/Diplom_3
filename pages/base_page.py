@@ -75,3 +75,12 @@ class BasePage:
             actions.click_and_hold(source_element).move_to_element(target_element).release()
         else:
             print(f'Не получилость перетащить элемент с локатором {locator_source}')
+    @allure.step('Прокрутить список на странице')
+    def scroll_list(self,scrollable_element_locator,target_element_locator,timeout=10):
+        scrollable_element = self.find_element(scrollable_element_locator, timeout)
+        target_element = self.find_element(target_element_locator, timeout)
+        if scrollable_element and target_element:
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scrollable_element)
+        else:
+            print(f'Не получилость обнаружить элемент с локатором {scrollable_element_locator}')
+
