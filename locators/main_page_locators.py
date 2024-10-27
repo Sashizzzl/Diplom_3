@@ -12,7 +12,7 @@ class Locators:
 
     ORDER_NUMBER_TITLE_IN_POP_UP = [By.XPATH,".//p[text()='идентификатор заказа']"]  #надпись "идентификатор заказа" во всплывающем окне после оформления заказа
     ORDER_NUMBER_IN_POP_UP = [By.XPATH,".//h2[contains(@class,'digits')]"]  #номер оформленного заказа во всплывающем окне после оформления заказа
-
+    ORDER_NUMBER_9999 = [By.XPATH,".//h2[text()='9999']"] #номер заказа 9999
     INGREDIENT_DETAILS_WINDOW_TITLE = [By.XPATH,".//h2[text()='Детали ингредиента']"] #надпись "Детали ингредиента" во всплывающем окне о деталях ингредиента
     CLOSE_INGREDIENT_INFO_WINDOW = [By.XPATH,".//section[contains(@class,'opened')]//button[contains(@class,'close')]/*"] #крестик
 

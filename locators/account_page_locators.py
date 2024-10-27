@@ -24,3 +24,4 @@ class Locators:
     HISTORY_OF_ORDERS_FIELD = [By.XPATH,".//div[contains(@class,'orderHistory')]"]  # область для прокрутки списка заказов в Истории заказов
 
     ACCOUNT_INFO_TEXT = [By.XPATH,".//p[contains(text(),'данные')]"] #надпись "В этом разделе вы можете изменить свои персональные данные"
+    LIST_OF_ORDERS_BUTTON = [By.XPATH, ".//a[@href='/feed']"]  # кнопка Лента заказов

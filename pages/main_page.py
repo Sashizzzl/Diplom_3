@@ -1,14 +1,8 @@
 import allure
 from pages.base_page import BasePage
 from locators.main_page_locators import Locators
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 class MainPage(BasePage):
-    #def __init__(self, driver):
-        #self.driver = driver
-        #эт вообще нужно?
-
     @allure.step('Кликаем на кнопку "Войти в аккаунт"')
     def click_log_in_button(self):
         self.click_element(Locators.LOG_IN_BUTTON)
@@ -58,7 +52,9 @@ class MainPage(BasePage):
     @allure.step('Получаем текст надписи "Детали ингредиента" в окне информации об ингредиенте')
     def get_text_of_pop_up_ingredient_info_title(self):
         return self.get_text_of_element(Locators.INGREDIENT_DETAILS_WINDOW_TITLE)
-
+    @allure.step('Ожидание на отсуствие номера заказа 9999 в окне после создания заказа')
+    def wait_invisible_number_9999_in_created_order_window(self):
+        self.invisible_element(Locators.ORDER_NUMBER_9999)
 
 
 

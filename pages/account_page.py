@@ -50,12 +50,12 @@ class AccountPage(BasePage):
     @allure.step('Кликаем на кнопку "История заказов"')
     def click_orders_history_button(self):
         self.click_element(Locators.HISTORY_OF_ORDERS_BUTTON)
-    @allure.step('Получить текст активной кнопки "История заказов"')
-    def get_text_of_active_orders_history_button(self):
-        return self.get_text_of_element(Locators.HISTORY_OF_ORDERS_ACTIVE_BUTTON)
     @allure.step('Кликаем на кнопку "Выход"')
     def click_log_out_button(self):
         self.click_element(Locators.LOG_OUT_BUTTON)
+    @allure.step('Кликаем на кнопку "Лента заказов"')
+    def click_list_of_orders(self):
+        self.click_element(Locators.LIST_OF_ORDERS_BUTTON)
     @allure.step('Получить текст кнопки "Войти"')
     def get_text_of_log_in_button(self):
         return self.get_text_of_element(Locators.LOG_IN_BUTTON)
@@ -65,10 +65,6 @@ class AccountPage(BasePage):
     @allure.step('Получить номер последнего заказа в истории заказов')
     def get_number_of_last_order_in_order_history(self):
         return self.get_text_of_element(Locators.LAST_ORDER_NUMBER_IN_HISTORY)
-    @allure.step('Прокрутить поле заказов и получить номер последнего заказа в истории заказов')
-    def get_number_of_last_order_in_order_history_with_scroll(self):
-        self.scroll_to_last_order_in_order_history()
-        return self.get_number_of_last_order_in_order_history()
     @allure.step('Получить текст надписи "В этом разделе вы можете изменить свои персональные данные"')
     def get_text_of_account_info(self):
         return self.get_text_of_element(Locators.ACCOUNT_INFO_TEXT)

@@ -22,16 +22,21 @@ class ListOfOrdersPage(BasePage):
     def get_number_of_specified_order_in_orders_list(self,order_number):
         return self.get_text_of_element(Locators.order_number_in_list_of_orders_locator(order_number))
     @allure.step('Найти конкретный заказ в ленте заказов и получить его номер')
-    def get_number_of_specified_order_in_orders_list_and_scroll(self):
-        self.scroll_to_specified_order_in_orders_list()
-        return  self.get_number_of_specified_order_in_orders_list()
+    def get_number_of_specified_order_in_orders_list_and_scroll(self,order_number):
+        self.scroll_to_specified_order_in_orders_list(order_number)
+        return  self.get_number_of_specified_order_in_orders_list(order_number)
     @allure.step('Получить значение счетчика Выполнено за всё время')
-    def get_text_of_all_completed_orders_counter(self):
+    def get_number_of_all_completed_orders_counter(self):
         return self.get_text_of_element(Locators.ALL_COMPLETED_ORDERS_COUNTER)
     @allure.step('Получить значение счетчика Выполнено за сегодня')
-    def get_text_of_today_completed_orders_counter(self):
+    def get_number_of_today_completed_orders_counter(self):
         return self.get_text_of_element(Locators.TODAY_COMPLETED_ORDERS_COUNTER)
     @allure.step('Получить список заказов в работе')
     def get_orders_in_progress_number(self):
-        self.get_text_of_element(Locators.LIST_OF_ORDERS_IN_PROGRESS)
+        list_items = self.find_elements(Locators.LIST_OF_ORDERS_IN_PROGRESS)
+        for item in list_items:
+            return item.text
+    @allure.step('Ожидание появления номера созданного заказа в списке заказов в работе')
+    def wait_for_created_order_number_in_orders_in_progress_list(self,number_of_created_order):
+        self.wait_for_presence_of_text_in_element(locator=Locators.LIST_OF_ORDERS_IN_PROGRESS,text=number_of_created_order)
 

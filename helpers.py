@@ -1,0 +1,10 @@
+class ExpectedMessage:
+    ABLE_TO_CHOSE_PERSONAL_INFO = 'В этом разделе вы можете изменить свои персональные данные'
+    LOG_IN = 'Войти'
+    MAKE_BURGER = 'Соберите бургер'
+    ORDERS_LIST = 'Лента заказов'
+    INGREDIENT_DETAILS = 'Детали ингредиента'
+    DEFAULT_ORDER_NUMBER = '9999'
+    RESTORING_PASSWORD = 'Восстановление пароля'
+    ENTER_CODE_FROM_LETTER = 'Введите код из письма'
+    PASSWORD = 'Пароль'
