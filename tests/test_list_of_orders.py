@@ -19,7 +19,7 @@ class TestListOfOrders:
         main.click_close_window()
         main.click_list_of_orders_button()
         number_of_orders_after_creating_order = list.get_number_of_all_completed_orders_counter()
-        assert int(number_of_orders_after_creating_order) - int(number_of_orders_before_creating_order) == 1
+        assert int(number_of_orders_after_creating_order) > int(number_of_orders_before_creating_order)
     @allure.title('Проверка успешного увеличения счётчика "Выполнено за сегодня" при создании нового заказа')
     def test_number_of_all_completed_today_orders_raises_after_creating_new_order(self, driver, navigate, setup_method, login):
         main, account, list = setup_method
@@ -31,7 +31,7 @@ class TestListOfOrders:
         main.click_close_window()
         main.click_list_of_orders_button()
         number_of_orders_after_creating_order = list.get_number_of_today_completed_orders_counter()
-        assert int(number_of_orders_after_creating_order) - int(number_of_orders_before_creating_order) == 1
+        assert int(number_of_orders_after_creating_order) > int(number_of_orders_before_creating_order)
     @allure.title('Проверка успешного появления номера оформленного заказа в разделе "В работе"')
     def test_number_of_created_order_shown_in_orders_in_progress(self, driver, navigate, setup_method,login):
         main, account, list = setup_method

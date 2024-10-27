@@ -5,18 +5,20 @@ from data import Data
 
 class AccountPage(BasePage):
     @allure.step('Ввести данные в поле Емейл окна входа в аккаунт')
-    def fill_in_email_log_in_window(self):
-        self.enter_text(Locators.EMAIL_LOG_IN, Data.email)
+    def fill_in_email_log_in_window(self,create_new_user_api):
+        email = create_new_user_api["email"]
+        self.enter_text(Locators.EMAIL_LOG_IN, email)
     @allure.step('Ввести данные в поле пароля окна входа в аккаунт')
-    def fill_in_password_log_in_window(self):
-        self.enter_text(Locators.PASSWORD_LOG_IN, Data.password)
+    def fill_in_password_log_in_window(self,create_new_user_api):
+        password = create_new_user_api["password"]
+        self.enter_text(Locators.PASSWORD_LOG_IN, password)
     @allure.step('Кликаем на кнопку "Войти"')
     def click_log_in_button(self):
         self.click_element(Locators.LOG_IN_BUTTON)
     @allure.step('Войти в аккаунт')
-    def log_in(self):
-        self.fill_in_email_log_in_window()
-        self.fill_in_password_log_in_window()
+    def log_in(self,create_new_user_api):
+        self.fill_in_email_log_in_window(create_new_user_api)
+        self.fill_in_password_log_in_window(create_new_user_api)
         self.click_log_in_button()
     @allure.step('Кликаем на кнопку "Восстановить пароль"')
     def click_restore_password_button(self):
