@@ -17,9 +17,6 @@ class Locators:
 
     HISTORY_OF_ORDERS_BUTTON = [By.XPATH,".//a[text()='История заказов']"]  # кнопка "История заказов" в личном кабинете
     HISTORY_OF_ORDERS_ACTIVE_BUTTON = [By.XPATH,".//a[contains(@class,'link_active') and text()='История заказов']"] #активная кнопка "История заказов"
-    #FIRST_ORDER_IN_HISTORY = [By.XPATH,".//li[1]/a[contains(@class,'History')]"]  # первый заказ в Истории заказов
-    #SECOND_ORDER_IN_HISTORY = [By.XPATH,".//li[2]/a[contains(@class,'History')]"]  # второй заказ в Истории заказов
-    #LAST_BUT_ONE_ORDER_IN_HISTORY = [By.XPATH,".//li[last()-1]//div[contains(@class,'Box')]/p[contains(@class,'digits')]"]  # предпоследний заказ в Истории заказов
     LAST_ORDER_NUMBER_IN_HISTORY = [By.XPATH,".//li[last()]//div[contains(@class,'Box')]/p[contains(@class,'digits')]"]  #номер последнего заказа в Истории заказов
     HISTORY_OF_ORDERS_FIELD = [By.XPATH,".//div[contains(@class,'orderHistory')]"]  # область для прокрутки списка заказов в Истории заказов
 
