@@ -1,27 +1,33 @@
 import pytest
 from selenium import webdriver
 from config import URL
-from pages.base_page import BasePage
-from locators.main_page_locators import Locators
-from locators.account_page_locators import Locators
 from pages.account_page import AccountPage
+from pages.main_page import MainPage
+from pages.list_of_orders_page import  ListOfOrdersPage
 def browser_settings():
-    firefox_options = webdriver.FirefoxOptions()
-    return firefox_options
+    chrome_options = webdriver.ChromeOptions()
+    return chrome_options
 
-@pytest.fixture
+@pytest.fixture(scope="function")
 def driver():
-    firefox = webdriver.Firefox(options=browser_settings())
-    firefox.maximize_window()
-    yield firefox
-    firefox.quit()
+    chrome = webdriver.Chrome(options=browser_settings())
+    chrome.maximize_window()
+    yield chrome
+    chrome.quit()
 @pytest.fixture
 def navigate(driver):
     driver.get(URL)
     yield driver
+@pytest.fixture(autouse=True)
+def setup_method(driver):
+    main = MainPage(driver)
+    account = AccountPage(driver)
+    list = ListOfOrdersPage(driver)
+    return main, account, list
 @pytest.fixture
-def login(driver,navigate):
-    BasePage.click_element(Locators.LOG_IN_BUTTON)
-    AccountPage.log_in()
+def login(driver,navigate,setup_method):
+    main, account, list = setup_method
+    main.click_log_in_button()
+    account.log_in()
     yield driver
 

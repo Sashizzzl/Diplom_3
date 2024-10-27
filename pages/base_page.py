@@ -39,9 +39,14 @@ class BasePage:
         else:
             print(f'Не получилость ввести текст в элемент с локатором {locator}')
     @allure.step('Возвращаем текст на элементе')
-    def get_text_of_element(self,locator,timeout=10):
-        element = self.find_element(locator, timeout)
-        return element.text
+    def get_text_of_element(self, locator, timeout=10):
+        try:
+            element = WebDriverWait(self.driver, timeout).until(expected_conditions.visibility_of_element_located(locator))
+            text = element.text
+            return text
+        except Exception as e:
+            print(f"Error finding element: {e}")
+            return None
     @allure.step('Прокручиваем страницу до нужного элемента')
     def scroll_to_element(self,locator,timeout=10):
         self.driver.execute_script("arguments[0].scrollIntoView();", self.find_element(locator,timeout))
@@ -72,7 +77,7 @@ class BasePage:
         target_element = self.find_element(locator_target, timeout)
         if source_element and target_element:
             actions = ActionChains(self.driver)
-            actions.click_and_hold(source_element).move_to_element(target_element).release()
+            actions.click_and_hold(source_element).move_to_element(target_element).release().perform()
         else:
             print(f'Не получилость перетащить элемент с локатором {locator_source}')
     @allure.step('Прокрутить список на странице')
@@ -83,4 +88,7 @@ class BasePage:
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scrollable_element)
         else:
             print(f'Не получилость обнаружить элемент с локатором {scrollable_element_locator}')
+    @allure.step('Ожидание невидимости элемента')
+    def invisible_element(self,locator,timeout=10):
+        WebDriverWait(self.driver, timeout).until(expected_conditions.invisibility_of_element_located((locator)))
 
